@@ -22,8 +22,10 @@ jobs:
 
     - name: Build
       run: cargo build --release --target x86_64-pc-windows-msvc
+    - name: tree
+      run: tree ./
     - name: Rename and Move Executable
-      run: move target\x86_64-pc-windows-msvc\release\your_package_name.exe my_program.exe
+      run: move .\x86_64-pc-windows-msvc\release\your_package_name.exe my_program.exe
 
 
     - name: Setup Git Config
