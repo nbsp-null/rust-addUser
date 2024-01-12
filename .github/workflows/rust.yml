@@ -1,0 +1,36 @@
+name: Rust Windows Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-windows-64:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build for Windows 64-bit
+      run: |
+        rustup target add x86_64-pc-windows-msvc
+        cargo build --release --target x86_64-pc-windows-msvc
+    - name: Upload Windows 64-bit exe
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows-64-exe
+        path: rust-addUser/x86_64-pc-windows-msvc/release/*.exe
+
+  build-windows-32:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build for Windows 32-bit
+      run: |
+        rustup target add i686-pc-windows-msvc
+        cargo build --release --target i686-pc-windows-msvc
+    - name: Upload Windows 32-bit exe
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows-32-exe
+        path: rust-addUser/i686-pc-windows-msvc/release/*.exe
