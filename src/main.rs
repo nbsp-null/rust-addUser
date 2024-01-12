@@ -2,7 +2,7 @@ use windows::{
     Win32::NetworkManagement::NetManagement::{
         USER_INFO_1, NetUserAdd, UF_SCRIPT, USER_PRIV_USER, NetLocalGroupAddMembers
     },
-    Win32::Foundation::{PWSTR, PCWSTR},
+    Win32::core::{PWSTR, PCWSTR},
 };
 use windows::Win32::NetworkManagement::NetManagement::LOCALGROUP_MEMBERS_INFO_3;
 
