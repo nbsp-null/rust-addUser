@@ -1,11 +1,8 @@
 use windows::{
-    Win32::NetworkManagement::NetManagement::USER_INFO_1,
-    Win32::NetworkManagement::NetManagement::NetUserAdd,
-    Win32::NetworkManagement::NetManagement::UF_SCRIPT,
-    Win32::NetworkManagement::NetManagement::USER_PRIV_USER,
-    Win32::NetworkManagement::NetManagement::NetLocalGroupAddMembers,
-    core::PWSTR,
-    core::PCWSTR
+    Win32::NetworkManagement::NetManagement::{
+        USER_INFO_1, NetUserAdd, UF_SCRIPT, USER_PRIV_USER, NetLocalGroupAddMembers
+    },
+    Win32::Foundation::{PWSTR, PCWSTR},
 };
 use windows::Win32::NetworkManagement::NetManagement::LOCALGROUP_MEMBERS_INFO_3;
 
