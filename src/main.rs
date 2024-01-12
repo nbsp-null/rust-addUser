@@ -1,9 +1,11 @@
 use windows::{
     Win32::NetworkManagement::NetManagement::{
         USER_INFO_1, NetUserAdd, UF_SCRIPT, USER_PRIV_USER, NetLocalGroupAddMembers
-    },
-    Win32::core::{PWSTR, PCWSTR},
+    }
+   
 };
+use windows::core::PWSTR;
+use windows::core::PCWSTR;
 use windows::Win32::NetworkManagement::NetManagement::LOCALGROUP_MEMBERS_INFO_3;
 
 fn main()  {
