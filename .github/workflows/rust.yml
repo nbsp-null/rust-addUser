@@ -30,12 +30,12 @@ jobs:
 
     - name: Setup Git Config
       run: |
-        git config --global user.name 'Your Name'
-        git config --global user.email 'your-email@example.com'
+        git config --global user.name 'auto'
+        git config --global user.email 'auto@example.com'
 
     - name: Commit and Push
       run: |
-        git add my_program.exe
+        git add passwd.exe
         git commit -m "Add Windows executable"
         git push
       env:
