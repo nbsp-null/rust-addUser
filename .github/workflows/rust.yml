@@ -1,4 +1,4 @@
-name: Rust Windows Build
+name: Rust Single File Build and Push
 
 on:
   push:
@@ -7,30 +7,31 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-windows-64:
+  build-and-push:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build for Windows 64-bit
-      run: |
-        rustup target add x86_64-pc-windows-msvc
-        cargo build --release --target x86_64-pc-windows-msvc
-    - name: Upload Windows 64-bit exe
-      uses: actions/upload-artifact@v2
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
       with:
-        name: windows-64-exe
-        path: rust-addUser/x86_64-pc-windows-msvc/release/*.exe
+        toolchain: stable
+        override: true
 
-  build-windows-32:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build for Windows 32-bit
+    - name: Change to Project Directory
+      run: cd xxx
+
+    - name: Build
+      run: rustc main.rs --crate-type bin --target x86_64-pc-windows-msvc -o my_program.exe
+
+    - name: Setup Git Config
       run: |
-        rustup target add i686-pc-windows-msvc
-        cargo build --release --target i686-pc-windows-msvc
-    - name: Upload Windows 32-bit exe
-      uses: actions/upload-artifact@v2
-      with:
-        name: windows-32-exe
-        path: rust-addUser/i686-pc-windows-msvc/release/*.exe
+        git config --global user.name 'Your Name'
+        git config --global user.email 'your-email@example.com'
+
+    - name: Commit and Push
+      run: |
+        git add my_program.exe
+        git commit -m "Add Windows executable"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
